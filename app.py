@@ -15,12 +15,13 @@ def geocodificar(direccion):
     except:
         return (None, None)
 
-# Carga de archivos
+# Carga de archivos - Cambiado tipo a ["xlsx", "xls"]
 st.sidebar.header("Carga de Datos")
 file1 = st.sidebar.file_uploader("Subir Hoja 1", type=["xlsx", "xls"])
 file2 = st.sidebar.file_uploader("Subir Hoja 2", type=["xlsx", "xls"])
 
 if file1 and file2:
+    # Cambiado a read_excel
     df1 = pd.read_excel(file1)
     df2 = pd.read_excel(file2)
     df = pd.concat([df1, df2])
@@ -35,5 +36,4 @@ if file1 and file2:
             st.success("Coordenadas obtenidas")
             st.dataframe(df)
             
-            # Aquí conectaríamos el motor OR-Tools en el futuro
             st.info("Ahora el sistema está listo para calcular la ruta óptima.")
